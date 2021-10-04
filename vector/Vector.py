@@ -2,15 +2,27 @@ from abc import ABC, abstractmethod
 
 
 class Vector(ABC):
+    """
+    This is the abstract class for the Vector package
+
+    ...
+
+    Abstract Methods
+    -------
+    add(vector)
+        Adds an input vector to the Vector object.
+
+    distance_to(vector) -> float
+        Calculates the distance between the two vector objects.
+
+    """
+
+    distance_to(vector) -> Vector:
 
     @abstractmethod
-    def add_vector(self, vector):
+    def add(self, vector):
         pass
 
     @abstractmethod
-    def get_distance_between(self, vector):
-        pass
-
-    @abstractmethod
-    def apply_scalar(self, scalar):
+    def distance_to(self, vector) -> float:
         pass
