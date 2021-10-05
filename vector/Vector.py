@@ -15,14 +15,19 @@ class Vector(ABC):
     distance_to(vector) -> float
         Calculates the distance between the two vector objects.
 
-    """
+    update(vector)
+        This is to manually set the vectors values.
 
-    distance_to(vector) -> Vector:
+    """
 
     @abstractmethod
     def add(self, vector):
         pass
 
     @abstractmethod
-    def distance_to(self, vector) -> float:
+    def get_distance_between(self, vector) -> float:
+        pass
+
+    @abstractmethod
+    def update(self, vector):
         pass
