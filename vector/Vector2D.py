@@ -98,8 +98,8 @@ class Vector2D(Vector):
         """
         if isinstance(vector, Vector2D):
             return sqrt(
-                pow(self.x - vector.x, 2) + 
-                pow(self.y - vector.y, 2)
+                pow(vector.x - self.x, 2) + 
+                pow(vector.y - self.y, 2)
                 )
 
     def update(self, vector=None, x=0.0, y=0.0):

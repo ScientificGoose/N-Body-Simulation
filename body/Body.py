@@ -119,16 +119,15 @@ class Body:
 
 		for body in body_list:
 			if body != target:
-				distance = sqrt(target.get_distance_between(body.position))
-				mass_calc = (G * body.mass) / pow(distance, 3)
-				print(f"mass_calc {mass_calc:.2E}")
-				temp_vector = target.position.get_difference_vector(self.position)
-				temp_vector.apply_scalar(mass_calc)
+				distance = target.get_distance_between(body.position)
+				force = (G * target.mass * body.mass) / pow(distance, 2)
+				temp_vector = target.position.get_difference_vector(body.position)
+				temp_vector.apply_scalar(force/target.mass)
 				temp_acceleration.add(temp_vector)
 
 		return temp_acceleration
 
-	def calculate_velocity(self, bodies, time_step=1):
+	def calculate_velocity(self, bodies, index, time_step=1):
 		"""
 		This method will calculate the total velocity applied to the body for each iteration.
 
@@ -139,10 +138,21 @@ class Body:
 
 		returns None
 		"""
-		for index, body in enumerate(bodies):
-			acceleration = self.calculate_acceleration(bodies, index)
-			acceleration.apply_scalar(time_step)
-			print(f"\nx = {acceleration.x:.2E}") 
-			print(f"\ny = {acceleration.y:.2E}")
-			body.velocity.add(acceleration)
+		acceleration = self.calculate_acceleration(bodies, index)
+		acceleration.apply_scalar(time_step)
+		self._velocity.add(acceleration)
+
+	def update_position(self):
+		"""
+		This method will update the position of the body.
+
+		Parameters
+		----------
+		bodies (Body): A list of bodies in the system.
+		time_step (int): The default time to pass in the simulation.
+
+		returns: None
+		"""
+		self._position.add(self._velocity)
+
 
