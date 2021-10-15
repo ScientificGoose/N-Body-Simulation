@@ -1,6 +1,6 @@
-from vector.Vector import Vector
-from math import sqrt
-from math import pow
+from .vector import Vector
+from math import sqrt, pow
+
 
 class Vector3D(Vector):
 
