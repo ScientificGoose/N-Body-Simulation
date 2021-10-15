@@ -12,8 +12,6 @@
 
 This acceleration will be applied to the existing velocity of the body. Once the list of bodies has been processed, another iteration will be done. This second iteration will use the new velocity to update the position in space.
 
-### Tasks
+### Thank you:
+[josh314151](https://github.com/josh314151) - For helping me find equation errors when all hope was lost.
 
-
-### Reference
-http://www.scholarpedia.org/article/N-body_simulations_(gravitational)

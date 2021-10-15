@@ -27,16 +27,24 @@ class Vector2D(Vector):
         """
 
         if(isinstance(x, float) and isinstance(y, float)):
-            self.x = x
-            self.y = y
+            self._x = x
+            self._y = y
 
     @property
-    def get_x(self) -> float:
-        return self.x
+    def x(self) -> float:
+        return self._x
+
+    @x.setter
+    def x(self, value):
+        self._x = value
 
     @property
-    def get_y(self) -> float:
-        return self.y
+    def y(self) -> float:
+        return self._y
+
+    @y.setter
+    def y(self, value):
+        self._y = value
 
     def add(self, vector=None, x=0.0, y=0.0):
         """
@@ -50,15 +58,34 @@ class Vector2D(Vector):
         """
 
         if(vector and isinstance(vector, Vector2D)):
-            self.x += vector.get_x
-            self.y += vector.get_y
+            self.x += vector.x
+            self.y += vector.y
         elif(isinstance(x, float) and isinstance(y, float)):
             self.x += x
             self.y += y
         else:
-            print("You cannot add two vectors of different dimensions!")
+            raise ValueError("You cannot add two vectors of different dimensions!")
 
-    def get_distance_between(self, vector) -> float:
+    def get_difference_vector(self, vector):
+        """
+        This method will calculate the difference between two Vectors and return the resulting vector.
+
+        Parameters
+        ----------
+        vector (Vector2D): The Vector to be compared to this object.
+
+        return (Vector2D): The resulting Vector3D object.
+        """
+        if isinstance(vector, Vector2D):
+            temp_vector = Vector2D()
+            temp_vector.x = vector.x - self.x
+            temp_vector.y = vector.y - self.y
+        else:
+            raise ValueError("This cannot be performed on vectors of different dimensions!")
+
+        return temp_vector
+
+    def get_distance_to(self, vector) -> float:
         """
         This method returns the distance between two Vector2D objects.
         distance(a, b)(a, b) = sqrt((a - a)^2 + (b - b)^2)
@@ -71,8 +98,8 @@ class Vector2D(Vector):
         """
         if isinstance(vector, Vector2D):
             return sqrt(
-                pow(self.x - vector.get_x, 2) + 
-                pow(self.y - vector.get_y, 2)
+                pow(vector.x - self.x, 2) + 
+                pow(vector.y - self.y, 2)
                 )
 
     def update(self, vector=None, x=0.0, y=0.0):
@@ -89,8 +116,24 @@ class Vector2D(Vector):
         """
 
         if(vector and isinstance(vector, Vector2D)):
-            self.x = vector.get_x
-            self.y = vector.get_y
+            self.x = vector.x
+            self.y = vector.y
         elif(isinstance(x, float) and isinstance(y, float)):
             self.x = x
             self.y = y
+        else:
+            raise ValueError("Invalid input!")
+
+    def apply_scalar(self, scalar):
+        """
+        This method will apply an input scalar to the vector.
+
+        Parameters
+        ----------
+        scalar (float): The scalar to be applied to the Vector.
+        """
+        if isinstance(scalar, float):
+            self.x *= scalar
+            self.y *= scalar
+        else:
+            raise ValueError(f"{scalar} is not a float!")
