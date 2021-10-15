@@ -1,8 +1,6 @@
-from math import sqrt
 from math import pow
-from vector.Vector import Vector
-from vector.Vector2D import Vector2D
-from vector.Vector3D import Vector3D
+from vectors import Vector, Vector2D, Vector3D
+
 
 class Body:
 	"""
@@ -59,7 +57,7 @@ class Body:
 
 	@position.setter
 	def position(self, position_vector=None):
-		self._position = position
+		self._position = position_vector
 
 	@property
 	def velocity(self) -> Vector:
@@ -107,7 +105,7 @@ class Body:
 		returns (Vector): The net Vector for the acceleration. 
 		"""
 
-		G = 6.67408e-11 # Gravitational constant.
+		G = 6.67408e-11  # Gravitational constant.
 		target = body_list[body_idx]
 
 		if isinstance(self._acceleration, Vector2D):
@@ -154,5 +152,3 @@ class Body:
 		returns: None
 		"""
 		self._position.add(self._velocity)
-
-
