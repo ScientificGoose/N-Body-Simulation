@@ -2,13 +2,55 @@ import pytest
 from src.models import Body, Vector2D
 
 
-def body_test():
+@pytest.fixture(scope="module")
+def sample_bodies():
+    return [
+        Body("Sun", mass=1.989e30, position_vector=Vector2D(0.0, 0.0), velocity_vector=Vector2D(),
+             acceleration_vector=Vector2D()),
+        Body("Earth", mass=5.972e24, position_vector=Vector2D(1.49e8, 1.49e8), velocity_vector=Vector2D(108000.0, 0.0),
+             acceleration_vector=Vector2D()),
+        Body("Jupiter", mass=1.898e27, position_vector=Vector2D(8.166e8, 8.166e8),
+             velocity_vector=Vector2D(105249.6, 0.0), acceleration_vector=Vector2D())
+    ]
+
+
+@pytest.mark.parametrize(
+    "sun_to_earth,sun_to_jupiter,earth_to_jupiter",
+    [
+        (210717820.79359117, 1154846795.0338695, 944128974.2402782)
+    ]
+)
+def test_get_distance_between(sample_bodies, sun_to_earth, sun_to_jupiter, earth_to_jupiter):
+    assert sun_to_earth == sample_bodies[0].get_distance_between(sample_bodies[1])
+    assert sun_to_jupiter == sample_bodies[0].get_distance_between(sample_bodies[2])
+    assert earth_to_jupiter == sample_bodies[1].get_distance_between(sample_bodies[2])
+
+
+# @pytest.mark.parametrize()
+# def test_calculate_acceleration():
+#     pass
+#
+#
+# @pytest.mark.parametrize()
+# def test_calculate_velocity():
+#     pass
+#
+#
+# @pytest.mark.parametrize()
+# def test_update_position():
+#     pass
+
+
+# FIXME: refactor this logic into isolated tests
+def test_get_distance_between():
     bodies = []
     bodies.append(Body("Sun", mass=1.989e30, position_vector=Vector2D(0.0, 0.0), velocity_vector=Vector2D(),
                        acceleration_vector=Vector2D()))
-    bodies.append(Body("Earth", mass=5.972e24, position_vector=Vector2D(1.49e8, 1.49e8), velocity_vector=Vector2D(108000.0, 0.0),
-                       acceleration_vector=Vector2D()))
-    bodies.append(Body("Jupiter", mass=1.898e27, position_vector=Vector2D(8.166e8, 8.166e8), velocity_vector=Vector2D(105249.6, 0.0),
+    bodies.append(
+        Body("Earth", mass=5.972e24, position_vector=Vector2D(1.49e8, 1.49e8), velocity_vector=Vector2D(108000.0, 0.0),
+             acceleration_vector=Vector2D()))
+    bodies.append(Body("Jupiter", mass=1.898e27, position_vector=Vector2D(8.166e8, 8.166e8),
+                       velocity_vector=Vector2D(105249.6, 0.0),
                        acceleration_vector=Vector2D()))
 
     # print(f"\nThe distance between {bodies[0].name} and {bodies[1].name} is {bodies[0].get_distance_between(bodies[1].position)}.")
