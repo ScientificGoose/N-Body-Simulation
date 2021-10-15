@@ -15,3 +15,16 @@ This acceleration will be applied to the existing velocity of the body. Once the
 ### Thank you:
 [josh314151](https://github.com/josh314151) - For helping me find equation errors when all hope was lost.
 
+## Installation
+From the CLI, execute:
+1. `git clone https://github.com/ScientificGoose/N-Body-Simulation.git`
+2. `cd N-Body-Simulation`
+3. `python3 -m venv venv`
+4. `source venv/bin/activate`
+5. `pip install -r requirements.txt`
+
+## Testing
+From the CLI, execute:
+* `pytest tests/` _to run all tests_
+* `pytest tests/<test_file.py>` _to run a suite of tests_
+* `pytest tests/<test_file.py>::<test_name>` _to run a single test_
