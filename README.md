@@ -6,9 +6,9 @@
  
  The program will generate N number of bodies and loop for a set number of steps. Each step the list of bodies will be iterated through, and the net force applied to the acceleration of the body, using the following equation:
  
-![Formula](Force_Formula.jpg)
+![Formula](docs/images/Force_Formula.jpg)
 
-![Parameters](Parameters.jpg)
+![Parameters](docs/images/Parameters.jpg)
 
 This acceleration will be applied to the existing velocity of the body. Once the list of bodies has been processed, another iteration will be done. This second iteration will use the new velocity to update the position in space.
 
