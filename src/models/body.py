@@ -1,5 +1,5 @@
 from math import pow
-from vectors import Vector, Vector2D, Vector3D
+from .vectors import Vector, Vector2D, Vector3D
 
 
 class Body:
