@@ -25,9 +25,17 @@ class Vector(ABC):
         pass
 
     @abstractmethod
-    def get_distance_between(self, vector) -> float:
+    def get_difference_vector(self, vector):
+        pass
+
+    @abstractmethod
+    def get_distance_to(self, vector) -> float:
         pass
 
     @abstractmethod
     def update(self, vector):
+        pass
+
+    @abstractmethod
+    def apply_scalar(self, scalar):
         pass

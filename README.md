@@ -6,14 +6,25 @@
  
  The program will generate N number of bodies and loop for a set number of steps. Each step the list of bodies will be iterated through, and the net force applied to the acceleration of the body, using the following equation:
  
-![Formula](Force_Formula.jpg)
+![Formula](docs/images/Force_Formula.jpg)
 
-![Parameters](Parameters.jpg)
+![Parameters](docs/images/Parameters.jpg)
 
 This acceleration will be applied to the existing velocity of the body. Once the list of bodies has been processed, another iteration will be done. This second iteration will use the new velocity to update the position in space.
 
-### Tasks
+### Thank you:
+[josh314151](https://github.com/josh314151) - For helping me find equation errors when all hope was lost.
 
+## Installation
+From the CLI, execute:
+1. `git clone https://github.com/ScientificGoose/N-Body-Simulation.git`
+2. `cd N-Body-Simulation`
+3. `python3 -m venv venv`
+4. `source venv/bin/activate`
+5. `pip install -r requirements.txt`
 
-### Reference
-http://www.scholarpedia.org/article/N-body_simulations_(gravitational)
+## Testing
+From the CLI, execute:
+* `pytest tests/` _to run all tests_
+* `pytest tests/<test_file.py>` _to run a suite of tests_
+* `pytest tests/<test_file.py>::<test_name>` _to run a single test_
